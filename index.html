@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atlas IPTV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Roboto+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app" id="app" data-theme="dark">
+    <aside class="sidebar" aria-label="Sidebar">
+      <div class="brand">
+        <div class="brand-mark">A</div>
+        <div class="brand-text">
+          <span>Atlas</span>
+          <small>IPTV Console</small>
+        </div>
+      </div>
+      <nav class="category-nav" aria-label="Categories">
+        <div class="nav-title">Browse</div>
+        <div class="category-list" id="categoryList"></div>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="status-pill" id="connectionStatus">Idle</div>
+        <p class="sidebar-note">Streams provided by iptv-org</p>
+      </div>
+    </aside>
+
+    <div class="main">
+      <header class="topbar">
+        <div class="search-wrap">
+          <input type="search" id="searchInput" placeholder="Search channels, groups, keywords" aria-label="Search channels" />
+          <span class="search-hint">/</span>
+        </div>
+        <div class="topbar-actions">
+          <button class="pill" id="viewAllBtn" aria-pressed="true">All</button>
+          <button class="pill" id="viewFavoritesBtn">Favorites</button>
+          <button class="pill" id="viewRecentBtn">Recent</button>
+          <button class="pill" id="themeToggle">Light</button>
+        </div>
+      </header>
+
+      <main class="content">
+        <section class="player-section" aria-label="Player">
+          <div class="player-card" id="playerCard">
+            <div class="player-header">
+              <div class="channel-meta">
+                <span class="channel-title" id="currentChannelName">Select a channel</span>
+                <span class="live-pill" id="liveIndicator">LIVE</span>
+                <span class="stream-status" id="streamStatus">Offline</span>
+              </div>
+              <div class="player-actions">
+                <button class="icon-btn" id="fullscreenBtn">Fullscreen</button>
+                <div class="volume-control">
+                  <span>Vol</span>
+                  <input id="volumeRange" type="range" min="0" max="1" step="0.05" value="0.8" />
+                </div>
+              </div>
+            </div>
+            <div class="player-body">
+              <video id="video" playsinline></video>
+              <div class="player-overlay" id="playerOverlay" aria-hidden="true">
+                <div class="spinner"></div>
+                <div class="overlay-text" id="overlayText">Loading stream…</div>
+              </div>
+              <div class="player-error" id="playerError" aria-live="polite">
+                <h3>Playback error</h3>
+                <p id="errorMessage">We could not load this stream.</p>
+                <button class="pill" id="retryBtn">Retry</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="grid-section" aria-label="Channels">
+          <div class="grid-header">
+            <div>
+              <div class="section-title" id="sectionTitle">Animation</div>
+              <div class="section-subtitle" id="sectionSubtitle">Streaming channels</div>
+            </div>
+            <div class="result-count" id="resultCount">0 channels</div>
+          </div>
+          <div class="channel-grid" id="channelGrid" aria-live="polite"></div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.18/dist/hls.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
